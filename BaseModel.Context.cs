@@ -15,9 +15,19 @@ namespace ToursApp
     
     public partial class ToursEntities : DbContext
     {
+        private static ToursEntities _context;
+
         public ToursEntities()
             : base("name=ToursEntities")
         {
+        }
+
+        public static ToursEntities GetContext()
+        {
+            if (_context == null)
+                _context = new ToursEntities();
+
+            return _context;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

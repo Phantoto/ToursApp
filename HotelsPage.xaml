@@ -6,12 +6,12 @@
       xmlns:local="clr-namespace:ToursApp"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="HotelsPage">
+      Title="HotelsPage" IsVisibleChanged="Page_IsVisibleChanged">
 
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="377*"/>
-            <RowDefinition Height="73*"/>
+            <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
         <DataGrid x:Name="DGridHotels" AutoGenerateColumns="False" IsReadOnly="True">
             <DataGrid.Columns>

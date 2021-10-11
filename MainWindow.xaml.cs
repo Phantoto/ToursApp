@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,8 +24,15 @@ namespace ToursApp
         public MainWindow()
         {
             InitializeComponent();
-            MainFrame.Navigate(new HotelsPage());
+            MainFrame.Navigate(new ToursPage());
             Manager.MainFrame = MainFrame;
+
+            //ImportTours();
+        }
+        private void ImportTours()
+        {
+            var fileData = File.ReadAllLines(@"C:\Users\user\Desktop\Tours\Туры.txt");
+            var images = Directory.GetFiles(@"C:\Users\user\Desktop\Tours\Туры фото");
         }
         private void BtnBack_Click(object sender, RoutedEventArgs e)
         {

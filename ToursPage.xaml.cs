@@ -55,22 +55,22 @@ namespace ToursApp
 
         private void TBoxSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
-
+            UpdateTours();
         }
 
         private void CheckActual_Unchecked(object sender, RoutedEventArgs e)
         {
-
+            UpdateTours();
         }
 
         private void CheckActual_Checked(object sender, RoutedEventArgs e)
         {
-
+            UpdateTours();
         }
 
         private void ComboType_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            UpdateTours();
         }
     }
 }

@@ -33,6 +33,37 @@ namespace ToursApp
         {
             var fileData = File.ReadAllLines(@"C:\Users\user\Desktop\Tours\Туры.txt");
             var images = Directory.GetFiles(@"C:\Users\user\Desktop\Tours\Туры фото");
+
+            foreach (var line in fileData)
+            {
+                var data = line.Split('\t');
+
+                var tempTour = new Tour
+                {
+                    Name = data[0].Replace("\"", ""),
+                    TicketCount = int.Parse(data[2]),
+                    Price = decimal.Parse(data[3]),
+                    IsActual = (data[4] == "0") ? false : true
+                };
+                foreach (var tourType in data[5].Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries))
+                {
+                    var currentType = ToursEntities.GetContext().Types.ToList().FirstOrDefault(p => p.Name == tourType);
+                    if (currentType != null)
+                        tempTour.Types.Add(currentType);
+                }
+
+                try
+                {
+                    tempTour.ImagePreview = File.ReadAllBytes(images.FirstOrDefault(p => p.Contains(tempTour.Name)));
+                }
+                catch(Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+
+                ToursEntities.GetContext().Tours.Add(tempTour);
+                ToursEntities.GetContext().SaveChanges();
+            }
         }
         private void BtnBack_Click(object sender, RoutedEventArgs e)
         {
